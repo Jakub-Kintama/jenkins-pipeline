@@ -9,7 +9,7 @@ describe("API unit test suite", () => {
             expect(list[0]).toBe("jogging");
         });
     })
-    describe("getHobbies/1/3", () => {
+    describe("getHobbies/slice/2", () => {
         const list = hobbies.getHobbies();
         it("returns 3 hobbies", () => {
             expect(list.length).toEqual(1);
