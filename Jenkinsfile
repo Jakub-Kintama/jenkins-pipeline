@@ -20,15 +20,15 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage("Test"){
-            steps {
-                sh 'npm test'
-            }
-        }
         stage('Deploy and smoke test') {
             steps{
                 sh 'chmod +x ./jenkins/scripts/*.sh'
                 sh './jenkins/scripts/deploy.sh'
+            }
+        }
+        stage("Test"){
+            steps {
+                sh 'npm test'
             }
         }
         stage("Build & Push Docker image") {
