@@ -24,12 +24,12 @@ app.get('/hobbies/:id', async (req, res) => {
     res.send();
 })
 
-app.get('hobbies/slice/:id', async (req, res) => {
+app.get('hobbies/from/:id', async (req, res) => {
     const id = req.params.id;
 	res.send(hobbies.getHobbies().slice(id));
 })
 
-app.get('hobbies/not/:id', async (req, res) => {
+app.get('hobbies/to/:id', async (req, res) => {
 	const id = req.params.id;
-	res.send(hobbies.getHobbies().querySelectorAll(':not(' + id + ')'));
+	res.send(hobbies.getHobbies().slice(0, id));
 })
