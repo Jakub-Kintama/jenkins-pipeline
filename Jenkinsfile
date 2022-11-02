@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "Jakub-Kintama/jenkins-docker-test"
+        registry = "jakub-kintama/jenkins-docker-test"
         DOCKERHUB_CREDENTIALS = credentials('docker-login-pwd')
     }
     agent {
