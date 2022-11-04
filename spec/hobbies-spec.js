@@ -8,17 +8,11 @@ describe("API unit test suite", () => {
         it("returns 'jogging' as first hobby", () => {
             expect(list[0]).toBe("jogging");
         });
-    })
-    describe("getHobbies/from/2", () => {
-        const list = hobbies.getHobbies().slice(2);
         it("returns 3 hobbies", () => {
-            expect(list.length).toEqual(3);
+            expect(list.slice(2).length).toEqual(3);
         });
-    })
-    describe("getHobbies/to/3", () => {
-        const list = hobbies.getHobbies().slice(0, 3);
         it("returns 2 hobbies", () => {
-            expect(list.length).toEqual(3);
+            expect(list.slice(0, 3).length).toEqual(3);
         });
     })
 })
