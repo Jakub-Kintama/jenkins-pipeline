@@ -34,10 +34,14 @@ pipeline {
             }
         }
         stage('Deploy and smoke test') {
-            
+            steps{
+                echo 'ok'
+            }
         }
         stage('Cleanup') {
-
+            steps{
+                echo 'ok'
+            }
         }
     }
 }
