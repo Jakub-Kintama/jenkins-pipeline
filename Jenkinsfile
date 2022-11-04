@@ -5,7 +5,7 @@ pipeline {
     }
     agent {
         docker {
-            image 'mmiotkug/node-curl'
+            image 'kintama/node-curl'
             args '-p 3000:3000'
             args '-w /app'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
@@ -17,27 +17,31 @@ pipeline {
     stages {
         stage("Build"){
             steps {
-                echo 'ok'
+                sh 'npm install'
             }
         }
         stage("Test"){
             steps {
-                echo 'ok'
+                sh 'npm test'
             }
         }
         stage("Build & Push Docker image") {
             steps {
-                echo 'ok'
+                sh 'docker image build -t $registry:$BUILD_NUMBER .'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u kintama --password-stdin'
+                sh 'docker image push $registry:$BUILD_NUMBER'
+                sh "docker image rm $registry:$BUILD_NUMBER"
             }
         }
         stage('Deploy and smoke test') {
             steps{
-                echo 'ok'
+                sh 'chmod +x ./jenkins/scripts/*.sh'
+                sh './jenkins/scripts/deploy.sh'
             }
         }
         stage('Cleanup') {
             steps{
-                echo 'ok'
+                sh './jenkins/scripts/cleanup.sh'
             }
         }
     }
